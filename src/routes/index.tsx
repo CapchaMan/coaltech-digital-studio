@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Code2, Palette, Cpu, Sparkles, Quote, Star } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import avatarAmaka from "@/assets/avatar-amaka.jpg";
+import avatarDavid from "@/assets/avatar-david.jpg";
+import avatarPriya from "@/assets/avatar-priya.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
