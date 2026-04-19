@@ -47,6 +47,12 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Coaltech — Building Digital Experiences That Inspire" },
+      { name: "description", content: "Here’s a polished **portfolio description** you can use when publishing your Coaltech profile online or on social media. It’s concise, professional, and highlig" },
+      { property: "og:description", content: "Here’s a polished **portfolio description** you can use when publishing your Coaltech profile online or on social media. It’s concise, professional, and highlig" },
+      { name: "twitter:description", content: "Here’s a polished **portfolio description** you can use when publishing your Coaltech profile online or on social media. It’s concise, professional, and highlig" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/eb1eb951-b38c-46c0-90f6-fc172cc6ac18/id-preview-00ebcc8b--d79da6db-111c-487e-a638-cb518887fe07.lovable.app-1776599590089.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/eb1eb951-b38c-46c0-90f6-fc172cc6ac18/id-preview-00ebcc8b--d79da6db-111c-487e-a638-cb518887fe07.lovable.app-1776599590089.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
