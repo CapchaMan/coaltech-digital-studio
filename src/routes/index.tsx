@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Code2, Palette, Cpu, Sparkles, Quote, Star } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import avatarAmaka from "@/assets/avatar-amaka.jpg";
+import avatarDavid from "@/assets/avatar-david.jpg";
+import avatarPriya from "@/assets/avatar-priya.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -114,23 +117,23 @@ function Home() {
                 "Coaltech rebuilt our website from scratch and conversions doubled within a month. Pixel-perfect, lightning fast, and shipped on time.",
               name: "Amaka Okafor",
               role: "Founder, Lumen Studio",
-              initials: "AO",
+              avatar: avatarAmaka,
             },
             {
               quote:
                 "The custom dashboard they built for us replaced three legacy tools. Our team finally has one place to work — clean, secure, and a joy to use.",
               name: "David Mensah",
               role: "COO, NorthFleet Logistics",
-              initials: "DM",
+              avatar: avatarDavid,
             },
             {
               quote:
                 "Their UI/UX process is world-class. Every screen felt intentional. Our app store rating jumped from 3.6 to 4.8 after the redesign.",
               name: "Priya Raman",
               role: "Product Lead, Flowbank",
-              initials: "PR",
+              avatar: avatarPriya,
             },
-          ].map(({ quote, name, role, initials }) => (
+          ].map(({ quote, name, role, avatar }) => (
             <figure
               key={name}
               className="relative p-8 rounded-2xl bg-gradient-card border border-border/60 hover:border-primary/50 shadow-soft hover:shadow-glow transition-smooth flex flex-col"
@@ -149,9 +152,14 @@ function Home() {
                 "{quote}"
               </blockquote>
               <figcaption className="mt-6 flex items-center gap-3 pt-5 border-t border-border/60">
-                <div className="w-11 h-11 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm shadow-glow">
-                  {initials}
-                </div>
+                <img
+                  src={avatar}
+                  alt={name}
+                  width={44}
+                  height={44}
+                  loading="lazy"
+                  className="w-11 h-11 rounded-full object-cover ring-2 ring-primary/40 shadow-glow"
+                />
                 <div>
                   <div className="font-semibold text-sm">{name}</div>
                   <div className="text-xs text-muted-foreground">{role}</div>

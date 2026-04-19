@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import workWebsite from "@/assets/work-website.jpg";
-import workSoftware from "@/assets/work-software.jpg";
+import workDating from "@/assets/work-dating.jpg";
+import workBanking from "@/assets/work-banking.jpg";
 import workUiux from "@/assets/work-uiux.jpg";
 
 export const Route = createFileRoute("/portfolio")({
@@ -32,10 +33,16 @@ const works = [
     desc: "Sleek, professional, and fully responsive — designed to convert visitors into customers.",
   },
   {
-    img: workSoftware,
+    img: workDating,
     tag: "Software Development",
-    title: "Custom Software Solution",
-    desc: "Streamlined operations with secure data handling and tailored business workflows.",
+    title: "Dating Mobile App",
+    desc: "A vibrant matchmaking experience with smart recommendations, real-time chat, and secure profiles.",
+  },
+  {
+    img: workBanking,
+    tag: "Software Development",
+    title: "Banking Mobile App",
+    desc: "A secure fintech app for balances, transfers, and analytics — built with end-to-end encryption.",
   },
   {
     img: workUiux,
