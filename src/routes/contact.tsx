@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, FormEvent } from "react";
-import { Mail, Phone, Linkedin, Instagram, Twitter, Send } from "lucide-react";
+import { Mail, Phone, Linkedin, Instagram, Twitter, Send, MessageCircle } from "lucide-react";
 import { z } from "zod";
 
 export const Route = createFileRoute("/contact")({
@@ -22,7 +22,8 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const TO_EMAIL = "ogohchineduanthony@gmail.com";
+const TO_EMAIL = "coaltech91@gmail.com";
+const WHATSAPP_NUMBER = "2348137429301";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -87,15 +88,29 @@ function Contact() {
               </div>
               <h3 className="font-bold">Phone</h3>
             </div>
-            <ul className="space-y-1 text-sm text-muted-foreground">
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <a href="tel:+2347080143370" className="hover:text-primary transition-smooth">
                   +234 708 014 3370
                 </a>
               </li>
-              <li>
-                <a href="tel:+2348137429301" className="hover:text-primary transition-smooth">
-                  +234 813 742 9301
+              <li className="flex items-center gap-3 flex-wrap">
+                <span>+234 813 742 9301</span>
+                <a
+                  href={`tel:+${WHATSAPP_NUMBER}`}
+                  aria-label="Call +234 813 742 9301"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary hover:text-primary-foreground transition-smooth"
+                >
+                  <Phone size={12} /> Call
+                </a>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp +234 813 742 9301"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary hover:text-primary-foreground transition-smooth"
+                >
+                  <MessageCircle size={12} /> WhatsApp
                 </a>
               </li>
             </ul>

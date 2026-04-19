@@ -34,14 +34,20 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-center gap-2">
               <Mail size={14} className="text-primary" />
-              <a href="mailto:ogohchineduanthony@gmail.com" className="hover:text-foreground transition-smooth">
-                ogohchineduanthony@gmail.com
+              <a href="mailto:coaltech91@gmail.com" className="hover:text-foreground transition-smooth">
+                coaltech91@gmail.com
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone size={14} className="text-primary" />
               <a href="tel:+2347080143370" className="hover:text-foreground transition-smooth">
                 +234 708 014 3370
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <Phone size={14} className="text-primary" />
+              <a href="tel:+2348137429301" className="hover:text-foreground transition-smooth">
+                +234 813 742 9301
               </a>
             </li>
           </ul>
