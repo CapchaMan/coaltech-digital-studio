@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Code2, Palette, Cpu, Sparkles } from "lucide-react";
+import { ArrowRight, Code2, Palette, Cpu, Sparkles, Quote, Star } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 export const Route = createFileRoute("/")({
@@ -89,6 +89,75 @@ function Home() {
               <h3 className="text-xl font-bold mb-2">{title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="container mx-auto px-6 py-24">
+        <div className="text-center mb-16">
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-medium mb-5">
+            Testimonials
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Trusted by <span className="text-gradient">visionary teams</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+            What our clients say after shipping with Coaltech.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            {
+              quote:
+                "Coaltech rebuilt our website from scratch and conversions doubled within a month. Pixel-perfect, lightning fast, and shipped on time.",
+              name: "Amaka Okafor",
+              role: "Founder, Lumen Studio",
+              initials: "AO",
+            },
+            {
+              quote:
+                "The custom dashboard they built for us replaced three legacy tools. Our team finally has one place to work — clean, secure, and a joy to use.",
+              name: "David Mensah",
+              role: "COO, NorthFleet Logistics",
+              initials: "DM",
+            },
+            {
+              quote:
+                "Their UI/UX process is world-class. Every screen felt intentional. Our app store rating jumped from 3.6 to 4.8 after the redesign.",
+              name: "Priya Raman",
+              role: "Product Lead, Flowbank",
+              initials: "PR",
+            },
+          ].map(({ quote, name, role, initials }) => (
+            <figure
+              key={name}
+              className="relative p-8 rounded-2xl bg-gradient-card border border-border/60 hover:border-primary/50 shadow-soft hover:shadow-glow transition-smooth flex flex-col"
+            >
+              <Quote
+                className="absolute top-6 right-6 text-primary/20"
+                size={36}
+                aria-hidden
+              />
+              <div className="flex gap-0.5 text-primary mb-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={14} fill="currentColor" />
+                ))}
+              </div>
+              <blockquote className="text-sm text-foreground/90 leading-relaxed flex-1">
+                "{quote}"
+              </blockquote>
+              <figcaption className="mt-6 flex items-center gap-3 pt-5 border-t border-border/60">
+                <div className="w-11 h-11 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm shadow-glow">
+                  {initials}
+                </div>
+                <div>
+                  <div className="font-semibold text-sm">{name}</div>
+                  <div className="text-xs text-muted-foreground">{role}</div>
+                </div>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </section>
