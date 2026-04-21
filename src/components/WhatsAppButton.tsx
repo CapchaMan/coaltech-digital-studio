@@ -2,7 +2,7 @@ const WHATSAPP_NUMBER = "2348137429301";
 const MESSAGE = "Hi Coaltech! I'd like to discuss a project.";
 
 export function WhatsAppButton() {
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(MESSAGE)}`;
+  const href = `https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(MESSAGE)}&type=phone_number&app_absent=0`;
 
   return (
     <a
