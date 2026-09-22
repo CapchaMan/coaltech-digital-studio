@@ -32,28 +32,63 @@ export const Route = createFileRoute("/contact")({
 const TO_EMAIL = "coaltech91@gmail.com";
 const WHATSAPP_NUMBER = "2348137429301";
 
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Invalid email").max(255),
-  subject: z.string().trim().min(1, "Subject is required").max(150),
-  message: z.string().trim().min(10, "Message must be at least 10 characters").max(2000),
-});
+const SERVICES = [
+  "Web Development",
+  "Software Development",
+  "UI/UX Design",
+  "Other",
+];
+
+const EMPTY = {
+  name: "",
+  email: "",
+  phone: "",
+  company: "",
+  service: "",
+  subject: "",
+  message: "",
+  website: "",
+};
 
 function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState(EMPTY);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [notice, setNotice] = useState<string | null>(null);
 
-  const onSubmit = (e: FormEvent) => {
+  const submit = useServerFn(submitContactMessage);
+
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (status === "sending") return;
     setError(null);
+    setNotice(null);
+
     const parsed = contactSchema.safeParse(form);
     if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Invalid input");
+      setError(parsed.error.issues[0]?.message ?? "Please check your details and try again.");
       return;
     }
-    const { name, email, subject, message } = parsed.data;
-    const body = `Name: ${name}%0AEmail: ${email}%0A%0A${encodeURIComponent(message)}`;
-    window.location.href = `mailto:${TO_EMAIL}?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+    setStatus("sending");
+    try {
+      const result = await submit({ data: parsed.data });
+      setNotice(
+        result.emailSent
+          ? `Thank you, ${result.name}. Your message has been received successfully. We'll review your inquiry and get back to you shortly.`
+          : `Thank you, ${result.name}. Your message was received and recorded, but we couldn't send the confirmation email right now. We'll still get back to you shortly.`,
+      );
+      setStatus("sent");
+      setForm(EMPTY);
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch (err) {
+      setStatus("idle");
+      setError(
+        err instanceof Error && err.message
+          ? err.message
+          : "We couldn't send your message right now. Please try again or reach us on WhatsApp.",
+      );
+    }
   };
 
   return (
