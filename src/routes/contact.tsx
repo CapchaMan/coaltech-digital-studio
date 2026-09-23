@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, FormEvent } from "react";
-import { Mail, Phone, Linkedin, Instagram, Twitter, Send, MessageCircle } from "lucide-react";
+import { Mail, Phone, Linkedin, Instagram, Twitter, Send, MessageCircle, Loader2, Check } from "lucide-react";
 
 const WhatsAppIcon = ({ size = 18 }: { size?: number }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} aria-hidden>
@@ -228,6 +228,42 @@ function Contact() {
               />
             </Field>
           </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            <Field label="Phone (optional)">
+              <input
+                type="tel"
+                maxLength={40}
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                className="input"
+                placeholder="+234 800 000 0000"
+              />
+            </Field>
+            <Field label="Company (optional)">
+              <input
+                type="text"
+                maxLength={120}
+                value={form.company}
+                onChange={(e) => setForm({ ...form, company: e.target.value })}
+                className="input"
+                placeholder="Lumen Studio"
+              />
+            </Field>
+          </div>
+          <Field label="Service">
+            <select
+              value={form.service}
+              onChange={(e) => setForm({ ...form, service: e.target.value })}
+              className="input"
+            >
+              <option value="">Select a service (optional)</option>
+              {SERVICES.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </Field>
           <Field label="Subject">
             <input
               type="text"
@@ -251,18 +287,47 @@ function Contact() {
             />
           </Field>
 
+          {/* Honeypot — hidden from real visitors */}
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            value={form.website}
+            onChange={(e) => setForm({ ...form, website: e.target.value })}
+            className="absolute w-0 h-0 opacity-0 pointer-events-none -z-10"
+          />
+
           {error && (
-            <p className="text-sm text-destructive">{error}</p>
+            <p role="alert" className="text-sm text-destructive">
+              {error}
+            </p>
+          )}
+          {notice && (
+            <p
+              role="status"
+              className="text-sm rounded-xl border border-primary/40 bg-primary/10 text-foreground px-4 py-3"
+            >
+              {notice}
+            </p>
           )}
 
           <button
             type="submit"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-primary text-primary-foreground font-semibold shadow-glow hover:scale-105 transition-smooth"
+            disabled={status === "sending"}
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-primary text-primary-foreground font-semibold shadow-glow hover:scale-105 transition-smooth disabled:opacity-60 disabled:hover:scale-100 disabled:cursor-not-allowed"
           >
-            Send message <Send size={16} />
+            {status === "sending" ? (
+              <>Sending… <Loader2 size={16} className="animate-spin" /></>
+            ) : status === "sent" ? (
+              <>Message sent <Check size={16} /></>
+            ) : (
+              <>Send message <Send size={16} /></>
+            )}
           </button>
           <p className="text-xs text-muted-foreground">
-            This opens your email client pre-filled with your message.
+            Your message is sent straight to the Coaltech team — we usually reply within a day.
           </p>
 
           <style>{`
