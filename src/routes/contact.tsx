@@ -202,7 +202,7 @@ function Contact() {
         {/* Form */}
         <form
           onSubmit={onSubmit}
-          className="lg:col-span-3 p-8 rounded-2xl bg-gradient-card border border-border/60 shadow-elegant space-y-5"
+          className="relative lg:col-span-3 p-8 rounded-2xl bg-gradient-card border border-border/60 shadow-elegant space-y-5"
         >
           <div className="grid gap-5 md:grid-cols-2">
             <Field label="Your Name">
